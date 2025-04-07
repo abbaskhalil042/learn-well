@@ -1,27 +1,17 @@
 import express from "express";
+import userRoute from "./routes/user.route.js";
+import courseRoute from "./routes/course.route.js";
 
 const app = express();
 
-app.post("user/signup", async (req, res) => {});
+app.use(express.json());
 
-app.post("user/signin", async (req, res) => {});
-//*purchased course by the user
-app.get("/user/purchased", async (req, res) => {
-  res.json({
-    msg: "purchased courses",
-  });
-});
-//*all course
-app.get("/courses", async (req, res) => {
-  res.json({
-    msg: "all courses",
-  });
-});
+//*user route
+app.use("/user", userRoute); //! userRoute(app) ->>> i could do this too
 
-//*user wants to purchase the courses
-app.post("/course/purchase",async()=>{
-    
-})
+//*course route
+app.use("/course", courseRoute); //! courseRoute(app) ->>>> i could do this too
+
 app.listen(process.env.PORT, () => {
   console.log(`http://localhost:${process.env.PORT || 3000}`);
 });
